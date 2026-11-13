@@ -1,19 +1,42 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-Example:
-   context: |
-     Tech stack: Laravel, PHP
-     We use conventional commits
+context: |
+  Project: weather-api, a Laravel web application.
+  Runtime: PHP 8.5 and Laravel Framework 13.42.0.
+  Backend: Laravel 13 with Inertia Laravel 3.7, Fortify 1.42, Wayfinder 0.1.23,
+    Tinker 3.1, and Laravel Boost 2.10.4.
+  Frontend: React 19 with Inertia React, TypeScript, Tailwind CSS 4, Vite Plus,
+    and Laravel Wayfinder generated actions and routes.
+  Data: SQLite is the default database. Cache, queue, and session use the
+    database by default. Database migrations and seeders live in database/.
+  Authentication: Fortify-backed authentication with registration, login,
+    email verification, password reset, two-factor authentication, passkeys,
+    and profile/security settings.
+  Testing and quality: PHPUnit 12, Laravel Pint 1.32, and Larastan 3.15.
+    Use the existing Composer scripts for build, lint, type checks, and tests.
+  Architecture: Server-side Laravel routes and controllers render Inertia pages
+    in resources/js/pages. Use Laravel actions and named routes through
+    Wayfinder-generated TypeScript APIs where applicable.
+  Deployment: Laravel Sail runs the PHP 8.5 application in compose.yaml and
+    includes a Mailpit service. SQLite remains the default database; no external
+    database container is required.
+  Existing project support: Laravel Boost guidelines are in AGENTS.md. OpenSpec
+    planning files live under openspec/.
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+rules:
+  proposal:
+    - Describe the user outcome, scope, non-goals, and acceptance criteria.
+    - Ground the proposal in the current Laravel, Inertia, React, and SQLite stack.
+    - Call out changes that affect authentication, database schema, routes, or deployment.
+  specs:
+    - Write requirements using SHALL statements.
+    - Add concrete WHEN/THEN scenarios for normal, validation, authorization, and failure paths where applicable.
+    - Preserve existing authentication and Inertia behavior unless the change explicitly modifies it.
+  design:
+    - Explain the Laravel backend, Inertia/React frontend, database, and deployment impact separately when they are involved.
+    - Prefer existing application structure, Laravel conventions, named routes, and Wayfinder-generated client APIs.
+    - Identify migration, rollback, compatibility, and security considerations for persistent or authenticated features.
+  tasks:
+    - Group implementation work by backend, frontend, database, configuration, and tests.
+    - Include the concrete Laravel Artisan, Composer, npm, and verification commands needed to complete the work.
+    - Add tests for behavior changes and keep tasks small enough to implement and review independently.
