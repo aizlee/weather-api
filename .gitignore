@@ -4,10 +4,6 @@ npm-debug.log
 yarn-error.log
 .idea
 
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
-
 # Laravel 5 & Lumen specific
 public/storage
 public/hot
@@ -26,6 +22,11 @@ Homestead.json
 
 /public/build
 /storage/pail
+/public/hot
+/public/storage
+/storage/*.key
+/storage/*documentation.json
+/storage/basset/.basset
 .env.backup
 .env.production
 .phpactor.json
