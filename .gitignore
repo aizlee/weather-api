@@ -29,5 +29,6 @@ Homestead.json
 /storage/basset/.basset
 .env.backup
 .env.production
+.env.testing
 .phpactor.json
 auth.json

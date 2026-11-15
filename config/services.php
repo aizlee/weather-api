@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    'openweathermap' => [
+        'key' => env('OPENWEATHERMAP_API_KEY'),
+        'base_url' => env('OPENWEATHERMAP_BASE_URL', 'https://api.openweathermap.org'),
+        'geocoding_path' => '/geo/1.0/direct',
+        'weather_path' => '/data/2.5/weather',
+        'language' => env('OPENWEATHERMAP_LANGUAGE', 'ru'),
+        'timeout' => (int) env('OPENWEATHERMAP_TIMEOUT', 5),
+        'retry_times' => (int) env('OPENWEATHERMAP_RETRY_TIMES', 2),
+        'retry_sleep' => (int) env('OPENWEATHERMAP_RETRY_SLEEP', 200),
+    ],
+
 ];

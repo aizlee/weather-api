@@ -17,6 +17,34 @@ context: |
   Architecture: Server-side Laravel routes and controllers render Inertia pages
     in resources/js/pages. Use Laravel actions and named routes through
     Wayfinder-generated TypeScript APIs where applicable.
+  Business logic: Put orchestration, transformations, and domain rules in
+    app/Services. Put external API clients and provider adapters in
+    app/APIClients, define their contracts in app/Contracts, and bind concrete
+    implementations in AppServiceProvider. Keep controllers, routes, form
+    requests, and UI adapters thin. Group API routes by controller with
+    Route::controller(...)->group(...) and use explicit controller methods.
+    API clients normalize provider payloads into dedicated DTOs instead of
+    exposing raw response arrays to services.
+    Configuration defaults belong in config/services.php; clients may assume
+    declared configuration keys exist and must not duplicate their existence
+    checks or fallback values. Validate runtime credentials such as an empty
+    API key when the configuration explicitly allows an empty environment
+    value.
+    API controller responses use dedicated JsonResource classes created with
+    Resource::make(...). Resources list response fields explicitly and do not
+    pass through the entire service array; controllers do not return raw
+    response()->json(...) payloads. Services form response data through
+    dedicated DTOs, and resources adapt those DTOs to the HTTP contract.
+    Calls with more than one argument are written across multiple lines and
+    use named arguments.
+    User-facing text and API response messages must always be defined in
+    Laravel translation files and retrieved through localization helpers such
+    as __() or trans(). Do not hard-code these texts in controllers, services,
+    resources, exceptions, form requests, or other application code.
+    Prefer Laravel's built-in framework
+    features and conventions over custom wrappers or redundant methods;
+    introduce project-specific abstractions only when the framework solution
+    is insufficient or a clear domain requirement justifies them.
   Deployment: Laravel Sail runs the PHP 8.5 application in compose.yaml and
     includes a Mailpit service. SQLite remains the default database; no external
     database container is required.
@@ -35,8 +63,13 @@ rules:
   design:
     - Explain the Laravel backend, Inertia/React frontend, database, and deployment impact separately when they are involved.
     - Prefer existing application structure, Laravel conventions, named routes, and Wayfinder-generated client APIs.
+    - Prefer ready-made Laravel solutions over redundant custom methods, wrappers, or abstractions unless a concrete limitation or domain requirement is documented.
+    - Reflect the project conventions for Services, DTO-based response data, controller-grouped routes, and explicit JsonResource responses in the design.
+    - Require Laravel translation files for all user-facing text and API response messages.
     - Identify migration, rollback, compatibility, and security considerations for persistent or authenticated features.
   tasks:
     - Group implementation work by backend, frontend, database, configuration, and tests.
     - Include the concrete Laravel Artisan, Composer, npm, and verification commands needed to complete the work.
+    - Include resource creation and response-contract tests for API response changes.
+    - Include translation-file updates whenever user-facing text or API response messages are added or changed.
     - Add tests for behavior changes and keep tasks small enough to implement and review independently.
