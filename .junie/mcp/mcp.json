@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/home/avardugin/.config/herd-lite/bin/php",
+            "args": [
+                "/var/www/weather-api/artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}
