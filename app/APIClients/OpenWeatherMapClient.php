@@ -18,6 +18,7 @@ class OpenWeatherMapClient implements OpenWeatherMapClientInterface
      *     geocoding_path: string,
      *     weather_path: string,
      *     language: string,
+     *     cache_ttl: int,
      *     timeout: int,
      *     retry_times: int,
      *     retry_sleep: int
@@ -34,6 +35,7 @@ class OpenWeatherMapClient implements OpenWeatherMapClientInterface
          *     geocoding_path: string,
          *     weather_path: string,
          *     language: string,
+         *     cache_ttl: int,
          *     timeout: int,
          *     retry_times: int,
          *     retry_sleep: int

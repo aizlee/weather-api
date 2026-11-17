@@ -41,6 +41,7 @@ return [
         'geocoding_path' => '/geo/1.0/direct',
         'weather_path' => '/data/2.5/weather',
         'language' => env('OPENWEATHERMAP_LANGUAGE', 'ru'),
+        'cache_ttl' => (int) env('OPENWEATHERMAP_CACHE_TTL', 600),
         'timeout' => (int) env('OPENWEATHERMAP_TIMEOUT', 5),
         'retry_times' => (int) env('OPENWEATHERMAP_RETRY_TIMES', 2),
         'retry_sleep' => (int) env('OPENWEATHERMAP_RETRY_SLEEP', 200),

@@ -23,6 +23,9 @@ context: |
     implementations in AppServiceProvider. Keep controllers, routes, form
     requests, and UI adapters thin. Group API routes by controller with
     Route::controller(...)->group(...) and use explicit controller methods.
+    Follow KISS and YAGNI: implement the simplest solution that satisfies the
+    current confirmed requirements, and do not add speculative abstractions,
+    configuration, variants, or extension points for possible future needs.
     API clients normalize provider payloads into dedicated DTOs instead of
     exposing raw response arrays to services.
     Configuration defaults belong in config/services.php; clients may assume
@@ -63,6 +66,7 @@ rules:
   design:
     - Explain the Laravel backend, Inertia/React frontend, database, and deployment impact separately when they are involved.
     - Prefer existing application structure, Laravel conventions, named routes, and Wayfinder-generated client APIs.
+    - Apply KISS and YAGNI; justify every abstraction and variability point with a current requirement, and reject speculative complexity.
     - Prefer ready-made Laravel solutions over redundant custom methods, wrappers, or abstractions unless a concrete limitation or domain requirement is documented.
     - Reflect the project conventions for Services, DTO-based response data, controller-grouped routes, and explicit JsonResource responses in the design.
     - Require Laravel translation files for all user-facing text and API response messages.
